@@ -1,3 +1,16 @@
+# BirdcageBuilder has moved!
+This is a placeholder from the Oct. 2023 soft beta release.  
+The official project has been renamed and has moved here: [OpenBirdcageBuilder](https://github.com/dbnyu/OpenBirdcageBuilder)
+- Live Webapp: [https://dbnyu.github.io/OpenBirdcageBuilder/](https://dbnyu.github.io/OpenBirdcageBuilder/)
+
+## Everything below is archival only!!!
+Please refer to the new links above; this page will likely be deleted & remain as a placeholder/redirect
+- And also to preserve the existing Github issues if they can't be imported to the new project.
+
+
+
+
+
 # Open BirdcageBuilder
 Open Source capacitor calculator for tuning Birdcage RF Coils.
 

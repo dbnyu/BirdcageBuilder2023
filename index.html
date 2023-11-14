@@ -162,188 +162,17 @@
 
   <body>
     <header>
-    <h1 class="header-h1">Open BirdcageBuilder</h1>
-    v0.0.7 Beta WIP<br>
+    <h1 class="header-h1">Open BirdcageBuilder has moved!</h1>
     <br>
     </header>
 
     <br>
 
-    <form id="main_form"> 
-
-      <fieldset>
-        <legend>Configuration</legend>
-
-        <!-- Defaults set to match Android app for quick testing -->
-
-        <label for="num_legs">Number of Legs:</label>
-        <select name="num_legs" id="num_legs" onChange="mark_results_stale()" required >
-          <!-- NOTE: User can edit this list/add custom values if needed (must be multiples of 4) -->
-          <option value="4">4</option>
-          <option selected="selected" value="8">8</option>
-          <option value="12">12</option>
-          <option value="16">16</option>
-          <option value="20">20</option>
-          <option value="24">24</option>
-          <option value="28">28</option>
-          <option value="32">32</option>
-          <option value="36">36</option>
-          <option value="40">40</option>
-          <option value="44">44</option>
-          <option value="48">48</option>
-          <option value="52">52</option>
-          <option value="56">56</option>
-          <option value="60">60</option>
-          <option value="64">64</option>
-          <option value="68">68</option>
-          <option value="72">72</option>
-          <option value="76">76</option>
-          <option value="80">80</option>
-          <option value="84">84</option>
-          <option value="88">88</option>
-          <option value="92">92</option>
-          <option value="96">96</option>
-          <option value="100">100</option>
-          <option value="104">104</option>
-          <option value="108">108</option>
-          <option value="112">112</option>
-          <option value="116">116</option>
-          <option value="120">120</option>
-          <option value="124">124</option>
-          <option value="128">128</option>
-        </select>
-        <br>
-
-        <!-- NOTE: for input validation, using "a very small number" for inputs that have to be positive and nonzero, to take advantage of builtin validation without javascript -->
-        <!-- TODO shield radius must be greader than coil radius, or zero? - probably need javascript? -->
-
-        <input type="number" id="center_freq"   step="any" value="21.28" min="0.000001" onChange="mark_results_stale()" required > Frequency (MHz)</input><br>
-        <input type="number" id="coil_radius"   step="any" value="10"    min="0.000001" onChange="mark_results_stale()" required > Coil Radius (cm)</input><br>
-        <!-- <input type="number" id="shield_radius" step="any" value="0"     min="0"        onChange="mark_results_stale()" required > Shield Radius (cm)</input><br> -->
-        <input type="number" id="shield_radius" step="any" value="0"     onChange="validate_shield_radius()" required > Shield Radius (cm)</input><br>
-        <input type="number" id="leg_len"       step="any" value="10"    min="0.000001" onChange="mark_results_stale()" required > Leg Length (cm)</input><br>
-        <br>
+    <h2>Please see the most up to date version here:<br>
+      <a href="https://dbnyu.github.io/OpenBirdcageBuilder/">https://dbnyu.github.io/OpenBirdcageBuilder/</a><br>
+    </h2>
 
 
-        <!-- Begin Coil Config Radio Buttons -->
-
-        <input type="radio" id="config_lp" name="config" value="lowpass" onChange="update_coil_config(this)" required checked />
-        <label for="config_lp">Low Pass</label><br>
-
-        <input type="radio" id="config_hp" name="config" value="highpass" onChange="update_coil_config(this)" />
-        <label for="config_hp">High Pass</label><br>
-
-        <input type="radio" id="config_bp_leg" name="config" value="bandpass_leg" onChange="update_coil_config(this) "/>
-        <label for="config_bp_leg">Band Pass (Fixed Caps on Legs)</label><br>
-
-        <input type="radio" id="config_bp_er" name="config" value="bandpass_er" onChange="update_coil_config(this) "/>
-        <label for="config_bp_er">Band Pass (Fixed Caps on ER)</label><br>
-            
-            <!-- note: "required" fields are skipped over for validation if disabled -->
-            <input type="number" id="bp_predcap" step="any" value="-1" min="0.000001" disabled="disabled" onChange="mark_results_stale()" required > Fixed Capacitor (pF)</input><br>
-
-        <!-- End Coil Config Radio Buttons -->
-
-      </fieldset>
-      <br>
-
-
-      <fieldset>
-        <legend>Leg Type</legend>
-
-        <input type="radio" id="leg_rect" name="leg_type" value="leg_rect" onChange="update_leg_geom_inputs(this)" required checked />
-        <label for="leg_rect">Rectangular</label>
-        <br>
-
-        <input type="number" id="leg_width" step="any" value="2" min="0.000001" onChange="mark_results_stale()" required > Leg Width (cm)</input><br>
-        <br>
-        <input type="radio" id="leg_tube" name="leg_type" value="leg_tube" onChange="update_leg_geom_inputs(this)" required />
-        <label for="leg_tube">Tubular</label>
-        <br>
-
-          <!-- TODO- javascript validation that OD > ID and nonzero (ID can be zero if it's solid though?) -->
-          <input type="number" id="leg_ID" step="any" value="0" min="0" disabled="disabled" onChange="validate_tube_outer_diam('leg_ID', 'leg_OD')" required > Leg Inner Diam. (cm)</input><br>
-          <!-- <input type="number" id="leg_OD" step="any" value="0" disabled="disabled" onChange="mark_results_stale()" required > Leg Outer Diam. (cm)</input><br> -->
-          <input type="number" id="leg_OD" step="any" value="0" disabled="disabled" onChange="validate_tube_outer_diam('leg_ID', 'leg_OD')" required > Leg Outer Diam. (cm)</input><br>
-
-        <br>
-
-      </fieldset>
-      <br>
-
-
-      <fieldset>
-        <legend>End Ring Type</legend>
-
-        <input type="radio" id="er_rect" name="er_type" value="er_rect" onChange="update_er_geom_inputs(this)" required checked />
-        <label for="er_rect">Rectangular</label><br>
-          <input type="number" id="er_width" step="any" value="1" min="0.000001" onChange="mark_results_stale()" required > End Ring Width (cm)</input><br>
-        <br>
-
-        <input type="radio" id="er_tube" name="er_type" value="er_tube" onChange="update_er_geom_inputs(this)" required />
-        <label for="er_tube">Tubular</label>
-        <br>
-
-          <!-- TODO- javascript validation that OD > ID and nonzero (ID can be zero if it's solid though?) -->
-          <input type="number" id="er_ID" step="any" value="0" min="0" disabled="disabled" onChange="validate_tube_outer_diam('er_ID', 'er_OD')" required > ER Inner Diam. (cm)</input><br>
-          <input type="number" id="er_OD" step="any" value="0" disabled="disabled" onChange="validate_tube_outer_diam('er_ID', 'er_OD')" required > ER Outer Diam. (cm)</input><br>
-
-      </fieldset>
-      <br>
-
-
-
-
-
-
-      <!-- TODO input verification regex -->
-      <!-- TODO input verification min/max (maybe just min=0?) -->
-      <!-- TODO display 0.0 literal for float inputs? (maybe just min=0?) -->
-      <!-- TODO maybe bootstrap or other library has nicer inputs? don't waste too much time making it pretty -->
-
-
-      <!-- TODO - may need to revert back to a 'submit' button for input validation to work... -->
-
-
-      <!-- <button type="button" onclick="calculate(); return false">Calculate!</button> -->
-      <button type="submit" onclick="calculate(); return false">Calculate!</button> 
-      <!-- 'return false' is necessary to avoid automatic page refresh (for type="submit") -->
-      <!-- NOTE: changed buttons to type "button" instead of "submit"; is return false still necessary? -->
-
-    </form>
-
-    <hr>
-    <h2>Results</h2>
-
-    <!-- <button type="button" onclick="output_clear(); return false">Clear Results</button> -->
-    <!-- TODO - delete/deprecate the output_clear function -->
-    <!-- <p id="output_test1">This field intentionally blank.</p> -->
-    <!-- <p id="output_main"></p> -->
-    <div class="warning_div" id="stale_div"></div>
-    <div class="warning_div" id="input_error_div"></div> <!-- warnings for invalid input (temp? disable submit button instead? have not found simple cross browser method yet...) -->
-
-    <table>
-      <tr>
-        <td>Leg Self Inductance (nH)</td>
-        <td id="leg_si">--</td>
-      </tr>
-      <tr>
-        <td>ER Self Inductance (nH)</td>
-        <td id="er_si">--</td>
-      </tr>
-      <tr>
-        <td>Leg Mutual Inductance (nH)</td>
-        <td id="leg_mi">--</td>
-      </tr>
-      <tr>
-        <td>ER Mutual Inductance (nH)</td>
-        <td id="er_mi">--</td>
-      </tr>
-      <tr>
-        <td style="font-weight: bold">Capacitor (pF)</td>
-        <td style="font-weight: bold" id="calc_cap">--</td>
-
-    </table>
 
 
 
@@ -355,7 +184,7 @@
 
     <br>
     <footer>
-      <a href="https://github.com/dbnyu/BirdcageBuilder2023">Documentation & Code (Github)</a><br>
+      <a href="https://github.com/dbnyu/OpenBirdcageBuilder">Documentation & Code (Github)</a><br>
       <br>
       <!-- TODO <a href="">Project Page (cai2r site)</a><br> -->
       <!-- <br> -->
